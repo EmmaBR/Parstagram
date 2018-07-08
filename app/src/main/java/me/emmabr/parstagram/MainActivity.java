@@ -1,5 +1,6 @@
 package me.emmabr.parstagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if(e == null) {
                     Log.d("LoginActivity", "Login Successful!");
+                    final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    // added so the user cannot log out by simply clicking the back button
+                    finish();
                 } else {
                     Log.e("LoginActivity", "Login failure");
                     e.printStackTrace();
