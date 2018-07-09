@@ -18,6 +18,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        loadTopPosts();
+    }
+
+    private void loadTopPosts() {
         final Post.Query postQuery = new Post.Query();
         postQuery.getTop().withUser();
 

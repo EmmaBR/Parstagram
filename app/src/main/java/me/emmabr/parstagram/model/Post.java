@@ -33,8 +33,6 @@ public class Post extends ParseObject {
         put(KEY_IMAGE, image);
     }
 
-    //TODO: continue video 4 at 11:30
-
     public ParseUser getUser() {
         return getParseUser(KEY_USER);
     }
