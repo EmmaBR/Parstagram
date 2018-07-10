@@ -14,6 +14,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -25,18 +26,18 @@ import me.emmabr.parstagram.model.Post;
 
 public class HomeActivity extends AppCompatActivity {
 
+    // camera variables
     public final String APP_TAG = "MyCustomApp";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
     File photoFile;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // define your fragments here
+        // define fragments here
         final Fragment fragment1 = new HomeFragment();
         final Fragment fragment2 = new NewPostFragment();
         final Fragment fragment3 = new UserFragment();
@@ -109,6 +110,20 @@ public class HomeActivity extends AppCompatActivity {
         File file = new File(mediaStorageDir.getPath() + File.separator + photoFileName);
 
         return file;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // by this point we have the camera photo on disk
+                Intent intent = new Intent(this, CreatePostActivity.class);
+                intent.putExtra("path", photoFile.getAbsolutePath());
+                startActivity(intent);
+            } else { // Result was a failure
+                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void loadTopPosts() {
