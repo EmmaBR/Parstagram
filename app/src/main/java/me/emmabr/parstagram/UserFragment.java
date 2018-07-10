@@ -34,13 +34,14 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ParseUser.logOut();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+
 
                 // checks if the logout was successful
                 ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
                 if (currentUser == null) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                     Toast.makeText(getActivity(), "Log out successful", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Log out failed", Toast.LENGTH_SHORT).show();

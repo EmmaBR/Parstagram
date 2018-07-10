@@ -1,11 +1,16 @@
 package me.emmabr.parstagram;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,11 +18,18 @@ import android.view.MenuItem;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 
+import java.io.File;
 import java.util.List;
 
 import me.emmabr.parstagram.model.Post;
 
 public class HomeActivity extends AppCompatActivity {
+
+    public final String APP_TAG = "MyCustomApp";
+    public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
+    public String photoFileName = "photo.jpg";
+    File photoFile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +63,8 @@ public class HomeActivity extends AppCompatActivity {
                         loadTopPosts();
                         break;
                     case R.id.action_new_post:
-                        newFragment = fragmentManager.beginTransaction();
-                        newFragment.replace(R.id.flContainer, fragment2).commit();
-                         break;
+                        onLaunchCamera();
+                        break;
                     case R.id.action_user:
                         newFragment = fragmentManager.beginTransaction();
                         newFragment.replace(R.id.flContainer, fragment3).commit();
@@ -67,6 +78,37 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void onLaunchCamera() {
+        // create Intent to take a picture and return control to the calling application
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Create a File reference to access to future access
+        photoFile = getPhotoFileUri(photoFileName);
+
+        Uri fileProvider = FileProvider.getUriForFile(HomeActivity.this, "me.emmabr.parstagram", photoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+    }
+
+    private File getPhotoFileUri(String photoFileName) {
+        // Get safe storage directory for photos
+        // Use `getExternalFilesDir` on Context to access package-specific directories.
+        // This way, we don't need to request external read/write runtime permissions.
+        File mediaStorageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+            Log.d(APP_TAG, "failed to create directory");
+        }
+
+        // Return the file target for the photo based on filename
+        File file = new File(mediaStorageDir.getPath() + File.separator + photoFileName);
+
+        return file;
     }
 
     private void loadTopPosts() {
