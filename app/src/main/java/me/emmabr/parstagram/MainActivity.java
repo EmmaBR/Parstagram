@@ -1,14 +1,16 @@
 package me.emmabr.parstagram;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -16,11 +18,12 @@ import com.parse.SignUpCallback;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private EditText usernameInput;
     private EditText passwordInput;
     private Button loginBtn;
     private Button registerBtn;
+    AnimationDrawable animationDrawable;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.etPassword);
         loginBtn = findViewById(R.id.btnLogin);
         registerBtn = findViewById(R.id.btnRegister);
+
+
+        relativeLayout = findViewById(R.id.relativeLayout);
+        animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(5000);
+        animationDrawable.setExitFadeDuration(2000);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,5 +115,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // if they are not logged in send to login. this happens automatically
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        animationDrawable.start();
     }
 }

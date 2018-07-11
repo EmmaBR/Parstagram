@@ -16,13 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-
 import java.io.File;
-import java.util.List;
-
-import me.emmabr.parstagram.model.Post;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -47,7 +41,6 @@ public class HomeActivity extends AppCompatActivity {
 
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.flContainer, fragment1).commit();
-        loadTopPosts();
 
         // code below deals with switching between fragments using bottom navigation
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -61,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.action_home:
                         newFragment = fragmentManager.beginTransaction();
                         newFragment.replace(R.id.flContainer, fragment1).commit();
-                        loadTopPosts();
+                        //loadTopPosts();
                         break;
                     case R.id.action_new_post:
                         onLaunchCamera();
@@ -73,7 +66,6 @@ public class HomeActivity extends AppCompatActivity {
                     default:
                         newFragment = fragmentManager.beginTransaction();
                         newFragment.replace(R.id.flContainer, fragment1).commit();
-                        loadTopPosts();
                         break;
                 }
                 return true;
@@ -122,30 +114,33 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, HomeFragment.class);
+//                startActivity(intent);
+
             }
         }
     }
 
-    private void loadTopPosts() {
-        final Post.Query postQuery = new Post.Query();
-        postQuery.getTop().withUser();
-
-        // grab posts using parse query and view it in the background
-        postQuery.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> objects, ParseException e) {
-                if (e == null) {
-                    // iterate through posts
-                    for (int i = 0; i < objects.size(); i++) {
-                        Log.d("HomeActivity", "Post[" + i + "] = "
-                                + objects.get(i).getDescription()
-                                + "\nusername = " + objects.get(i).getUser().getUsername()
-                        );
-                    }
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+//    private void loadTopPosts() {
+//        final Post.Query postQuery = new Post.Query();
+//        postQuery.getTop().withUser();
+//
+//        // grab posts using parse query and view it in the background
+//        postQuery.findInBackground(new FindCallback<Post>() {
+//            @Override
+//            public void done(List<Post> objects, ParseException e) {
+//                if (e == null) {
+//                    // iterate through posts
+//                    for (int i = 0; i < objects.size(); i++) {
+//                        Log.d("HomeActivity", "Post[" + i + "] = "
+//                                + objects.get(i).getDescription()
+//                                + "\nusername = " + objects.get(i).getUser().getUsername()
+//                        );
+//                    }
+//                } else {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//    }
 }
