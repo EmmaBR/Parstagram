@@ -32,16 +32,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         //create view using item movie layout
-        View viewMovie = inflater.inflate(R.layout.activity_post_list, parent, false);
+        View viewPost = inflater.inflate(R.layout.activity_post_list, parent, false);
         // return a new viewholder
-        return new ViewHolder(viewMovie);
+        return new ViewHolder(viewPost);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = posts.get(position);
         holder.tvUser.setText(post.getUser().getUsername());
-
+        holder.tvDescription.setText(post.getDescription());
 //        String imageUrl = null;
 //
 //        ImageView imageView = holder.ivPost;
@@ -63,12 +63,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         //track view objects
         ImageView ivPost;
         TextView tvUser;
+        TextView tvDescription;
 
         public ViewHolder(View itemView) {
             super(itemView);
             //lookup view objects by id
             ivPost = itemView.findViewById(R.id.ivPost);
             tvUser = (TextView) itemView.findViewById(R.id.tvUser);
+            tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
         }
     }
 }

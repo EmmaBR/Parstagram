@@ -114,33 +114,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(this, HomeFragment.class);
-//                startActivity(intent);
-
             }
         }
     }
-
-//    private void loadTopPosts() {
-//        final Post.Query postQuery = new Post.Query();
-//        postQuery.getTop().withUser();
-//
-//        // grab posts using parse query and view it in the background
-//        postQuery.findInBackground(new FindCallback<Post>() {
-//            @Override
-//            public void done(List<Post> objects, ParseException e) {
-//                if (e == null) {
-//                    // iterate through posts
-//                    for (int i = 0; i < objects.size(); i++) {
-//                        Log.d("HomeActivity", "Post[" + i + "] = "
-//                                + objects.get(i).getDescription()
-//                                + "\nusername = " + objects.get(i).getUser().getUsername()
-//                        );
-//                    }
-//                } else {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 }
