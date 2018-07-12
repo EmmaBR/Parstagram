@@ -16,17 +16,20 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_above="@+id/btnLogin"
-        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -42,14 +45,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="155dp"
+        android:layout_marginBottom="131dp"
         android:text="REGISTER " />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="218dp"
         android:layout_height="91dp"
-        android:layout_above="@+id/etUsername"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp"
         app:srcCompat="@drawable/nux_dayone_landing_logo" />
 </RelativeLayout>
