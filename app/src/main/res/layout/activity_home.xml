@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:theme="@style/NewAppTheme"
+        android:outlineAmbientShadowColor="#7a7c7f">
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/nav_logo_whiteout" />
+    </android.support.v7.widget.Toolbar>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -13,13 +28,39 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         app:menu="@menu/menu_bottom_navigation"
-        android:background="#FFFFFF"/>
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar"
+            app:srcCompat="@android:color/darker_gray" />
+    </android.support.design.widget.BottomNavigationView>
 
     <FrameLayout
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="1084dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="59dp" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:background="#babbbc" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/bottom_navigation"
+        android:background="#babbbc"  />
 
 </RelativeLayout>

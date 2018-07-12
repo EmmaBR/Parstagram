@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        getSupportActionBar().hide();
         // define fragments here
         final Fragment fragment1 = new HomeFragment();
         final Fragment fragment2 = new NewPostFragment();
