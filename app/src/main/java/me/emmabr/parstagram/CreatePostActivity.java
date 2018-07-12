@@ -30,8 +30,6 @@ public class CreatePostActivity extends AppCompatActivity {
         descriptionInput = findViewById(R.id.etDescription);
         createBtn = findViewById(R.id.btnCreatePost);
 
-        //  Bitmap takenImage = BitmapFactory.decodeFile();
-
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,12 +23,42 @@ public class HomeFragment extends Fragment {
     ArrayList<Post> posts;
     RecyclerView rvPosts;
     PostAdapter adapter;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+
     }
+
+//    //method for pull down to refresh
+//    public void fetchTimelineAsync(int page) {
+//        final Post.Query postQuery = new Post.Query();
+//        postQuery.getTop().withUser();
+//        postQuery.findInBackground(new FindCallback<Post>() {
+//            @Override
+//            public void done(List<Post> objects, ParseException e) {
+//                if (e == null) {
+//                    adapter.clear();
+//                    // ...the data has come back, add new items to your adapter...
+//                    List<Post> list = new ArrayList<>();
+//                    for (int i=0; i<objects.size(); i++) {
+//                        list.add(objects.get(i));
+//                    }
+//                    adapter.addAll(list);
+//                    // Now we call setRefreshing(false) to signal refresh has finished
+//                    swipeContainer.setRefreshing(false);
+//                } else {
+//                    Log.i("Parstagram", "Sorry, can't load feed.");
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -45,7 +76,23 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View newView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        swipeContainer = (SwipeRefreshLayout) newView.findViewById(R.id.swipeContainer);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                loadTopPosts();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        return newView;
     }
 
     private void loadTopPosts() {
@@ -62,13 +109,7 @@ public class HomeFragment extends Fragment {
                         posts.add(objects.get(i));
                     }
                     adapter.notifyDataSetChanged();
-                    // iterate through posts
-//                    for (int i = 0; i < objects.size(); i++) {
-//                        Log.d("HomeActivity", "Post[" + i + "] = "
-//                                + objects.get(i).getDescription()
-//                                + "\nusername = " + objects.get(i).getUser().getUsername()
-//                        );
-//                    }
+                    swipeContainer.setRefreshing(false);
                 } else {
                     e.printStackTrace();
                 }

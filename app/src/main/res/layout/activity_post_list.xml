@@ -92,7 +92,7 @@
 
     <TextView
         android:id="@+id/tvCreatedAt"
-        android:layout_width="85dp"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/tvUser" />

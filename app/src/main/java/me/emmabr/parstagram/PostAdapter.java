@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.emmabr.parstagram.model.Post;
 
@@ -77,5 +78,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
         }
+    }
+
+    // Clean all elements of the recycler
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Post> list) {
+        posts.addAll(list);
+        notifyDataSetChanged();
     }
 }
