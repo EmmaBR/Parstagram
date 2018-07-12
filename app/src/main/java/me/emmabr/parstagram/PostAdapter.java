@@ -44,7 +44,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Post post = posts.get(position);
         holder.tvUser.setText(post.getUser().getUsername());
         holder.tvDescription.setText(post.getDescription());
-        String imageUrl = null;
+        holder.tvCreatedAt.setText(post.getCreatedAt().toString());
+
+        String imageUrl = post.getImage().getUrl();
 
         ImageView imageView = holder.ivPost;
         //load image using glide
@@ -65,6 +67,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         ImageView ivPost;
         TextView tvUser;
         TextView tvDescription;
+        TextView tvCreatedAt;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -72,6 +75,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivPost = itemView.findViewById(R.id.ivPost);
             tvUser = (TextView) itemView.findViewById(R.id.tvUser);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
+            tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
         }
     }
 }

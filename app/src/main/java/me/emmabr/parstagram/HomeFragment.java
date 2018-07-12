@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,16 +57,18 @@ public class HomeFragment extends Fragment {
             @Override
             public void done(List<Post> objects, ParseException e) {
                 if (e == null) {
-                    posts.addAll(objects);
-                    adapter.notifyDataSetChanged();
 
-                    // iterate through posts
-                    for (int i = 0; i < objects.size(); i++) {
-                        Log.d("HomeActivity", "Post[" + i + "] = "
-                                + objects.get(i).getDescription()
-                                + "\nusername = " + objects.get(i).getUser().getUsername()
-                        );
+                    for (int i = objects.size() - 1; i > -1; --i) {
+                        posts.add(objects.get(i));
                     }
+                    adapter.notifyDataSetChanged();
+                    // iterate through posts
+//                    for (int i = 0; i < objects.size(); i++) {
+//                        Log.d("HomeActivity", "Post[" + i + "] = "
+//                                + objects.get(i).getDescription()
+//                                + "\nusername = " + objects.get(i).getUser().getUsername()
+//                        );
+//                    }
                 } else {
                     e.printStackTrace();
                 }
