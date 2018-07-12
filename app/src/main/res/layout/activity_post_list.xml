@@ -40,8 +40,8 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="47dp"
-        android:layout_height="35dp"
+        android:layout_width="41dp"
+        android:layout_height="33dp"
         android:layout_alignBottom="@+id/imageView5"
         android:layout_toEndOf="@+id/imageView5"
         app:srcCompat="@drawable/direct" />

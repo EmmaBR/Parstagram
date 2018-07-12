@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import me.emmabr.parstagram.model.Post;
@@ -42,14 +44,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Post post = posts.get(position);
         holder.tvUser.setText(post.getUser().getUsername());
         holder.tvDescription.setText(post.getDescription());
-//        String imageUrl = null;
-//
-//        ImageView imageView = holder.ivPost;
-//
-//        //load image using glide
-//        Glide.with(context)
-//                .load(imageUrl)
-//                .into(imageView);
+        String imageUrl = null;
+
+        ImageView imageView = holder.ivPost;
+        //load image using glide
+        Glide.with(context)
+                .load(imageUrl)
+                .into(imageView);
     }
 
     // returns size of list
