@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/imageView4"
         android:layout_below="@+id/imageView5"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <ImageView
         android:id="@+id/imageView4"
@@ -71,7 +72,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="63dp"
         android:layout_marginTop="16dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivUserPic"
@@ -83,12 +85,12 @@
 
     <TextView
         android:id="@+id/tvDescription"
+        android:textColor="#000000"
         android:layout_width="274dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tvUser"
         android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/tvUser"
-        android:text="TextView" />
+        android:layout_toEndOf="@+id/tvUser" />
 
     <TextView
         android:id="@+id/tvCreatedAt"

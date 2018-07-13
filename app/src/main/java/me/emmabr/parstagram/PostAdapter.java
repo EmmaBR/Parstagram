@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,16 +52,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         String imageUrl = post.getImage().getUrl();
 
-        //TODO: fixme profile image is being displayed on all posts
-        //ParseFile parseFile = ParseUser.getCurrentUser().getParseFile("profileImage");
-        //String profileImageUrl = null;
-//
-//        if (parseFile != null) {
-//            profileImageUrl = parseFile.getUrl();
-//        } else {
-//        }
+        //TODO: fixme logged in user profile image is being displayed on all posts
+        ParseFile parseFile = ParseUser.getCurrentUser().getParseFile("profileImage");
+        String profileImageUrl = null;
 
-        //ImageView profileImageView = holder.ivUserPic;
+        if (parseFile != null) {
+            profileImageUrl = parseFile.getUrl();
+        } else {
+        }
+
+        ImageView profileImageView = holder.ivUserPic;
         ImageView imageView = holder.ivPost;
 
         //load image using glide
@@ -68,9 +70,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 .into(imageView);
 
         //load userProfile image
-//        Glide.with(context)
-//                .load(profileImageUrl)
-//                .into(profileImageView);
+        Glide.with(context)
+                .load(profileImageUrl)
+                .into(profileImageView);
     }
 
     // returns size of list
@@ -87,7 +89,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView tvUser2;
         TextView tvDescription;
         TextView tvCreatedAt;
-        //ImageView ivUserPic;
+        ImageView ivUserPic;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -97,7 +99,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
             tvUser2 = (TextView) itemView.findViewById(R.id.tvUser2);
-            //ivUserPic = (ImageView) itemView.findViewById(R.id.ivUserPic);
+            ivUserPic = (ImageView) itemView.findViewById(R.id.ivUserPic);
         }
     }
 

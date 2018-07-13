@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserFragment">
+    tools:context=".UserFragment"
+    android:background="#FFFFFF">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivUserPic"
@@ -49,5 +51,69 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="167dp"
         android:text="Log Out" />
+
+    <ImageView
+        android:id="@+id/ivLine1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="162dp"
+        android:src="@android:color/darker_gray" />
+
+    <ImageView
+        android:id="@+id/ivLine2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="212dp"
+        android:src="@android:color/darker_gray" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="42dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ivLine1"
+        android:layout_marginEnd="129dp"
+        android:src="@drawable/tagged_photos" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="41dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ivLine1"
+        android:layout_marginStart="19dp"
+        android:src="@drawable/grid_view" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="41dp"
+        android:layout_height="43dp"
+        android:layout_alignTop="@+id/ivLine1"
+        android:layout_toEndOf="@+id/ivUserPic"
+        android:src="@drawable/list_view" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="22dp"
+        android:layout_height="28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="41dp"
+        android:layout_marginTop="170dp"
+        android:src="@drawable/ufi_save" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/ivUserPic"
+        android:layout_marginTop="123dp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
 </RelativeLayout>

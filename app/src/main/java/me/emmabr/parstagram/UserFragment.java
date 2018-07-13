@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,10 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View newView = inflater.inflate(R.layout.fragment_user, container, false);
+
+        //sets username to profile
+        TextView userName = (TextView) newView.findViewById(R.id.tvUserName);
+        userName.setText(ParseUser.getCurrentUser().getUsername());
 
         //sets user profile pic to user profile page
         ImageView userPic = (ImageView) newView.findViewById(R.id.ivUserPic);
