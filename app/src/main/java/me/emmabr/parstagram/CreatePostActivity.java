@@ -41,9 +41,6 @@ public class CreatePostActivity extends AppCompatActivity {
 
                 createPost(descripton, parseFile, user);
 
-                Intent intent = new Intent(CreatePostActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
     }
@@ -59,6 +56,9 @@ public class CreatePostActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d("CreatePostActivity", "Create post successful!");
+                    Intent intent = new Intent(CreatePostActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     e.printStackTrace();
                 }

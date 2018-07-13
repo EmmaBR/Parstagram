@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
-import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,27 +51,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         String imageUrl = post.getImage().getUrl();
 
-        //TODO: fixme logged in user profile image is being displayed on all posts
-        ParseFile parseFile = ParseUser.getCurrentUser().getParseFile("profileImage");
+        ParseFile parseFile =  post.getUser().getParseFile("profileImage");
         String profileImageUrl = null;
 
         if (parseFile != null) {
             profileImageUrl = parseFile.getUrl();
+            //load userProfile image
+            Glide.with(context)
+                    .load(profileImageUrl)
+                    .into(holder.ivUserPic);
         } else {
+            // set to default image
+            holder.ivUserPic.setImageResource(R.drawable.default_avatar);
         }
-
-        ImageView profileImageView = holder.ivUserPic;
-        ImageView imageView = holder.ivPost;
 
         //load image using glide
         Glide.with(context)
                 .load(imageUrl)
-                .into(imageView);
+                .into(holder.ivPost);
 
-        //load userProfile image
-        Glide.with(context)
-                .load(profileImageUrl)
-                .into(profileImageView);
+
     }
 
     // returns size of list

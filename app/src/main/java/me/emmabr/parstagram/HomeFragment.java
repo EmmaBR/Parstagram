@@ -75,10 +75,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void done(List<Post> objects, ParseException e) {
                 if (e == null) {
-
-                    for (int i = objects.size() - 1; i > -1; --i) {
-                        posts.add(objects.get(i));
-                    }
+                    posts.addAll(objects);
                     adapter.notifyDataSetChanged();
                     swipeContainer.setRefreshing(false);
                 } else {
