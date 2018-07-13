@@ -45,15 +45,32 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Post post = posts.get(position);
         holder.tvUser.setText(post.getUser().getUsername());
         holder.tvDescription.setText(post.getDescription());
+        holder.tvUser2.setText(post.getUser().getUsername());
         holder.tvCreatedAt.setText(post.getCreatedAt().toString());
 
         String imageUrl = post.getImage().getUrl();
 
+        //TODO: fixme profile image is being displayed on all posts
+        //ParseFile parseFile = ParseUser.getCurrentUser().getParseFile("profileImage");
+        //String profileImageUrl = null;
+//
+//        if (parseFile != null) {
+//            profileImageUrl = parseFile.getUrl();
+//        } else {
+//        }
+
+        //ImageView profileImageView = holder.ivUserPic;
         ImageView imageView = holder.ivPost;
+
         //load image using glide
         Glide.with(context)
                 .load(imageUrl)
                 .into(imageView);
+
+        //load userProfile image
+//        Glide.with(context)
+//                .load(profileImageUrl)
+//                .into(profileImageView);
     }
 
     // returns size of list
@@ -67,8 +84,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         //track view objects
         ImageView ivPost;
         TextView tvUser;
+        TextView tvUser2;
         TextView tvDescription;
         TextView tvCreatedAt;
+        //ImageView ivUserPic;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -77,6 +96,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvUser = (TextView) itemView.findViewById(R.id.tvUser);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
+            tvUser2 = (TextView) itemView.findViewById(R.id.tvUser2);
+            //ivUserPic = (ImageView) itemView.findViewById(R.id.ivUserPic);
         }
     }
 

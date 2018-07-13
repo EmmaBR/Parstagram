@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 public class UserFragment extends Fragment {
-    //TODO: on click log out
     // added variables
     private Button logOutBtn;
 
@@ -22,7 +24,30 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        View newView = inflater.inflate(R.layout.fragment_user, container, false);
+
+        //sets user profile pic to user profile page
+        ImageView userPic = (ImageView) newView.findViewById(R.id.ivUserPic);
+        ParseFile parseFile = ParseUser.getCurrentUser().getParseFile("profileImage");
+        String imgUrl;
+
+        if(parseFile != null) {
+            imgUrl = parseFile.getUrl();
+            Glide.with(getContext()).load(imgUrl).into(userPic);
+        }
+
+        //TODO: set an on Click to access media storage to change profile image and send back to parse
+//        userPic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //access local media storage to upload an image
+//                Intent intent = new Intent(MediaStore.INTENT_ACTION_MEDIA_SEARCH); //search local gallary??
+//
+//
+//            }
+//        });
+
+        return newView;
     }
 
     @Override
@@ -34,7 +59,6 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ParseUser.logOut();
-
 
                 // checks if the logout was successful
                 ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null

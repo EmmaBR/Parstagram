@@ -54,7 +54,6 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.action_home:
                         newFragment = fragmentManager.beginTransaction();
                         newFragment.replace(R.id.flContainer, fragment1).commit();
-                        //loadTopPosts();
                         break;
                     case R.id.action_new_post:
                         onLaunchCamera();
