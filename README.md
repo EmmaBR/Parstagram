@@ -39,6 +39,7 @@ The following **additional** features are implemented:
 
 - [x] user profile page with profile picture displayed
 - [x] styled user profile page to look like instagram profile page
+- [x] change ic_launcher logo / app icon
 - [ ] grid view of posts posted by user on user profile page
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
