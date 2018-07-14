@@ -17,9 +17,16 @@ import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+import java.io.File;
+
 public class UserFragment extends Fragment {
     // added variables
     private Button logOutBtn;
+    public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
+    public final static int CREATE_IMAGE_ACTIVITY_REQUEST_CODE = 1035;
+    public final static String PARSE_FILE_NAME = "profileImage";
+    public String photoFileName = "photo.jpg";
+    File photoFile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,17 +49,39 @@ public class UserFragment extends Fragment {
         }
 
         //TODO: set an on Click to access media storage to change profile image and send back to parse
-//        userPic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //access local media storage to upload an image
-//                Intent intent = new Intent(MediaStore.INTENT_ACTION_MEDIA_SEARCH); //search local gallary??
-//
-//
-//            }
-//        });
+        userPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //access local media storage to upload an image
+                Intent intent = new Intent(Intent.ACTION_PICK); //search local gallary??
+                startActivity(intent);
+            }
+        });
 
         return newView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        final ParseUser parseUser = ParseUser.getCurrentUser();
+//
+//        //parse user set Image??do i need a user model and user adapter?
+//        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                ParseFile profPic = new ParseFile(photoFile.getAbsoluteFile());
+//                ParseUser.getCurrentUser().put("profileImage", profPic);
+//                ParseUser.getCurrentUser().saveInBackground();
+//                Bitmap profBitmapImg =  BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+//                ((UserFragment) fgProfile).ibCreateProfPic.setImageBitmap(profBitmapImg);
+//            } else { // Result was a failure
+//                Toast.makeText(getActivity(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+//            }
+//        } else {
+//            Intent i = new Intent(getActivity(), UserFragment.class);
+//            i.putExtra("photoFilePath", photoFile.getAbsolutePath());
+//            startActivity(i);
+//
+//        }
     }
 
     @Override
