@@ -44,8 +44,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. I would have liked to be able to get the user profile image to change. I was able to access local storage but not upload      it.
-2. I also would like to display on the user profile the grid layout of all the images the user has posted.
+1.
+2.
 
 ## Video Walkthrough
 
@@ -53,14 +53,13 @@ Here's a walkthrough of implemented user stories:
 
 ![Walkthrough](walkthrough.gif)
 ![Walkthrough](walkthrough2.gif)
+![Walkthrough](walkthrough3.gif)
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [Android Async Http Client](http://loopj.com/android-async-http/) - networking library
-- Screenshots from my phone camera 
-- App logo [Google Image search](https://www.brandchannel.com/wp-content/uploads/2016/05/instagram-new-logo-may-2016.jpg)
 
 
 ## Notes
